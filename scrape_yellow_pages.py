@@ -29,6 +29,7 @@ class ScrapeYellowPages(object):
         self.url = f"https://www.yellowpages.com/search?search_terms={keyword}&geo_location_terms={place}"
         self.XPATH_LISTINGS = "//div[contains(@class, 'search-results organic')]/div[contains(@class, 'result')]"
         self.base_url = "https://www.yellowpages.com"
+        print("retrieving ", self.url)
 
     # Parsing yellow page listings
     def parse_listings(self):
