@@ -36,13 +36,13 @@ class ScrapeYellowPages(object):
                 listings = selector.xpath(self.XPATH_LISTINGS)
                 scraped_results = []
                 for result in listings:
-                    XPATH_BUSINESS_RANK = ""
+                    XPATH_BUSINESS_RANK = ".//h2[contains(@class, 'n')]/text()"
                     XPATH_BUSINESS_NAME = ".//a[contains(@class, 'business-name')]/span//text()"
                     XPATH_BUSINESS_TELEPHONE = ".//div[@class='phones phone primary']//text()"
                     XPATH_BUSINESS_PAGE = ".//a[@class='business-name']//@href"
                     XPATH_BUSINESS_CATEGORIES = ".//div[contains(@class, 'categories')]/a//text()"
                     XPATH_BUSINESS_WEBSITE = ".//a[contains(@class, 'track-visit-website')]//@href"
-
+                    XPATH_BUSINESS_RATING = ".//a[contains(@class, 'rating hasExtraRating')]/span[contains(@class, 'count')]//text()"
 
                     raw_business_rank = result.xpath(XPATH_BUSINESS_RANK)
                     raw_business_name = result.xpath(XPATH_BUSINESS_NAME)
@@ -50,6 +50,7 @@ class ScrapeYellowPages(object):
                     raw_business_page = result.xpath(XPATH_BUSINESS_PAGE)
                     raw_business_categories = result.xpath(XPATH_BUSINESS_CATEGORIES).getall()
                     raw_business_website = result.xpath(XPATH_BUSINESS_WEBSITE)
+                    raw_business_rating = result.xpath(XPATH_BUSINESS_RATING)
 
                     business_rank = str(raw_business_rank.get()).strip() if raw_business_rank else None
                     business_name = str(raw_business_name.get()).strip() if raw_business_name else None
@@ -58,6 +59,7 @@ class ScrapeYellowPages(object):
                     business_page = self.base_url + business_page
                     business_website = str(raw_business_website.get()).strip() if raw_business_website else None
                     business_categories = ", ".join(raw_business_categories)
+                    business_rating = str(raw_business_rating.get()) if raw_business_rating else None
 
                     business_details = {
                         "rank": business_rank,
@@ -66,6 +68,7 @@ class ScrapeYellowPages(object):
                         "business_page": business_page,
                         "category": business_categories,
                         "website": business_website,
+                        "rating": business_rating,
                     }
                     scraped_results.append(business_details)
                 return scraped_results
@@ -87,7 +90,7 @@ if __name__ == '__main__':
     if scraped_data:
         print("Writing scraped data to %s-%s-yellowpages-scraped-data.csv" % (slugify(keyword), slugify(place)))
         with open('%s-%s-yellowpages-scraped-data.csv' % (slugify(keyword), slugify(place)), 'w') as csvfile:
-            fieldnames = ['rank', 'business_name', 'telephone', 'business_page', 'category', 'website']
+            fieldnames = ['rank', 'business_name', 'telephone', 'business_page', 'category', 'website', 'rating']
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames, quoting=csv.QUOTE_ALL)
             writer.writeheader()
             for data in scraped_data:
