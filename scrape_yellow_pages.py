@@ -71,6 +71,7 @@ class ScrapeYellowPages(object):
                         "business_page": business_page,
                         "category": business_categories,
                         "website": business_website,
+                        "listing_url": response.url
                     }
                     scraped_results.append(business_details)
                 return scraped_results
@@ -92,7 +93,15 @@ if __name__ == '__main__':
     if scraped_data:
         print("Writing scraped data to %s-%s-yellowpages-scraped-data.csv" % (slugify(keyword), slugify(place)))
         with open('%s-%s-yellowpages-scraped-data.csv' % (slugify(keyword), slugify(place)), 'w') as csvfile:
-            fieldnames = ['rank', 'business_name', 'telephone', 'business_page', 'category', 'website']
+            fieldnames = [
+                'rank',
+                'business_name',
+                'telephone',
+                'business_page',
+                'category',
+                'website',
+                'listing_url',
+            ]
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames, quoting=csv.QUOTE_ALL)
             writer.writeheader()
             for data in scraped_data:
