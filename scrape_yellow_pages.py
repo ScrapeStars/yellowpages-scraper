@@ -48,6 +48,8 @@ class ScrapeYellowPages(object):
                     XPATH_BUSINESS_PAGE = ".//a[@class='business-name']//@href"
                     XPATH_BUSINESS_CATEGORIES = ".//div[contains(@class, 'categories')]/a//text()"
                     XPATH_BUSINESS_WEBSITE = ".//a[contains(@class, 'track-visit-website')]//@href"
+                    XPATH_STREET_ADDRESS = ".//div[contains(@class, 'street-address')]//text()"
+                    XPATH_BUSINESS_LOCALITY = ".//div[contains(@class, 'locality')]//text()"
 
                     raw_business_rank = result.xpath(XPATH_BUSINESS_RANK)
                     raw_business_name = result.xpath(XPATH_BUSINESS_NAME)
@@ -55,6 +57,8 @@ class ScrapeYellowPages(object):
                     raw_business_page = result.xpath(XPATH_BUSINESS_PAGE)
                     raw_business_categories = result.xpath(XPATH_BUSINESS_CATEGORIES).getall()
                     raw_business_website = result.xpath(XPATH_BUSINESS_WEBSITE)
+                    raw_street_address = result.xpath(XPATH_STREET_ADDRESS)
+                    raw_business_locality = result.xpath(XPATH_BUSINESS_LOCALITY)
 
                     business_rank = str(raw_business_rank.get()).strip() if raw_business_rank else None
                     business_name = str(raw_business_name.get()).strip() if raw_business_name else None
@@ -63,6 +67,10 @@ class ScrapeYellowPages(object):
                     business_page = self.base_url + business_page
                     business_website = str(raw_business_website.get()).strip() if raw_business_website else None
                     business_categories = ", ".join(raw_business_categories)
+                    street_address = str(raw_street_address.get()).strip() if raw_street_address else None
+                    locality = str(raw_business_locality.get()).strip() if raw_business_locality else None
+                    locality, locality_list = locality.split(',')
+                    _, region, zipcode = locality_list.split(' ')
 
                     business_details = {
                         "rank": business_rank,
@@ -71,6 +79,9 @@ class ScrapeYellowPages(object):
                         "business_page": business_page,
                         "category": business_categories,
                         "website": business_website,
+                        "street_address": street_address,
+                        "region": region,
+                        "zipcode": zipcode,
                         "listing_url": response.url
                     }
                     scraped_results.append(business_details)
@@ -100,6 +111,9 @@ if __name__ == '__main__':
                 'business_page',
                 'category',
                 'website',
+                'street_address',
+                'region',
+                'zipcode',
                 'listing_url',
             ]
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames, quoting=csv.QUOTE_ALL)
