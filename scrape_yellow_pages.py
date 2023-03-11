@@ -34,7 +34,7 @@ class ScrapeYellowPages(object):
     # Parsing yellow page listings
     def parse_listings(self):
         try:
-            print("Started Scraping")
+            print("Started Scraping...")
             time.sleep(random.randint(2, 5))
             response = requests.get(url=self.url, headers=self.headers)
             if response.status_code == 200:
@@ -88,7 +88,8 @@ class ScrapeYellowPages(object):
                     scraped_results.append(business_details)
                 return scraped_results
             else:
-                pass
+                print("Failed to process page", e)
+                return []
         except Exception as e:
             print("Failed to process page", e)
             return []
@@ -122,6 +123,6 @@ if __name__ == '__main__':
             writer.writeheader()
             for data in scraped_data:
                 writer.writerow(data)
-        print("Finish writing!")
+        print("Success! Finish writing!")
     else:
         print("No data scraped!")
