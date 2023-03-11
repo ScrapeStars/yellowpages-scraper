@@ -38,7 +38,7 @@ Python Requests, to make requests and download the HTML content of the pages (ht
 
 Python Parsel, for parsing the HTML Tree Structure using XPaths (Learn how to install that here – https://pypi.org/project/parsel/)
 
-All packages can be installed using below code:
+All packages can be installed using below command:
 
 ```
 pip install -r requirements.txt
