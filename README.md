@@ -27,8 +27,8 @@ This yellow pages scraper can extract the fields below:
 For this web scraping tutorial using Python 3, we will need some packages for downloading and parsing the HTML. 
 Below are the package requirements:
 
- - parsel
- - requests
+ - parsel (installation: pip install parsel)
+ - requests (installation: pip install requests)
 
 ### Installation
 
