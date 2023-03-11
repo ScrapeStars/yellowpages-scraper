@@ -80,6 +80,7 @@ class ScrapeYellowPages(object):
                         "category": business_categories,
                         "website": business_website,
                         "street_address": street_address,
+                        "locality": locality,
                         "region": region,
                         "zipcode": zipcode,
                         "listing_url": response.url
@@ -112,6 +113,7 @@ if __name__ == '__main__':
                 'category',
                 'website',
                 'street_address',
+                'locality',
                 'region',
                 'zipcode',
                 'listing_url',
