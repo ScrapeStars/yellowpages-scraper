@@ -1,1 +1,1 @@
-# yellowpages-scraper
+# Yellow Pages Business Details Scraper
