@@ -38,6 +38,12 @@ Python Requests, to make requests and download the HTML content of the pages (ht
 
 Python Parsel, for parsing the HTML Tree Structure using XPaths (Learn how to install that here – https://pypi.org/project/parsel/)
 
+All packages can be installed using below code:
+
+```
+pip install -r requirements.txt
+```
+
 ## Running the scraper
 We would execute the code with the script name followed by the positional arguments **keyword** and **place**. Here is an example
 to find the business details for restaurants in Boston. MA.
@@ -49,4 +55,4 @@ python3 scrape_yellow_pages.py restaurants Boston,MA
 
 This will create a csv file:
 
-[Sample Output](https://raw.githubusercontent.com/scrapehero/yellow_pages/master/restaurants-boston-yellowpages-scraped-data.csv)
+[Sample Output](https://raw.githubusercontent.com/ScrapeStars/yellowpages-scraper/main/restaurants-boston-2c-ma-yellowpages-scraped-data.csv)
