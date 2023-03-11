@@ -36,7 +36,7 @@ PIP to install the following packages in Python (https://pip.pypa.io/en/stable/i
 
 Python Requests, to make requests and download the HTML content of the pages (http://docs.python-requests.org/en/master/user/install/)
 
-Python Parsel, for parsing the HTML Tree Structure using XPaths (Learn how to install that here – http://lxml.de/installation.html)
+Python Parsel, for parsing the HTML Tree Structure using XPaths (Learn how to install that here – https://pypi.org/project/parsel/)
 
 ## Running the scraper
 We would execute the code with the script name followed by the positional arguments **keyword** and **place**. Here is an example
