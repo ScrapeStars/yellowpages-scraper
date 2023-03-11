@@ -20,7 +20,7 @@ This yellow pages scraper can extract the fields below:
 8. Locality 
 9. Region 
 10. Zipcode 
-11. URL
+11. Listing URL
 
 ### Prerequisites
 
