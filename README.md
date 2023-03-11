@@ -32,7 +32,7 @@ Below are the package requirements:
 
 ### Installation
 
-PIP to install the following packages in Python (https://pip.pypa.io/en/stable/installing/) 
+PIP to install the following packages in Python (https://pip.pypa.io/en/stable/installation/) 
 
 Python Requests, to make requests and download the HTML content of the pages (http://docs.python-requests.org/en/master/user/install/)
 
