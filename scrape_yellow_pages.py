@@ -113,30 +113,33 @@ if __name__ == '__main__':
 
     keyword = keyword_arg
     place = place_arg
-    # Example: python3 scrape_yellow_pages.py restaurants Boston,MA
 
-    scrape_yellow_pages = ScrapeYellowPages(keyword=keyword, place=place)
-    scraped_data = scrape_yellow_pages.parse_listings()
-    if scraped_data:
-        print("Writing scraped data to %s-%s-yellowpages-scraped-data.csv" % (slugify(keyword), slugify(place)))
-        with open('%s-%s-yellowpages-scraped-data.csv' % (slugify(keyword), slugify(place)), 'w') as csvfile:
-            fieldnames = [
-                'rank',
-                'business_name',
-                'telephone',
-                'business_page',
-                'category',
-                'website',
-                'street_address',
-                'locality',
-                'region',
-                'zipcode',
-                'listing_url',
-            ]
-            writer = csv.DictWriter(csvfile, fieldnames=fieldnames, quoting=csv.QUOTE_ALL)
-            writer.writeheader()
-            for data in scraped_data:
-                writer.writerow(data)
-        print("Success! Finish writing!")
+    if keyword and place:
+        # Example: python3 scrape_yellow_pages.py restaurants Boston,MA
+        scrape_yellow_pages = ScrapeYellowPages(keyword=keyword, place=place)
+        scraped_data = scrape_yellow_pages.parse_listings()
+        if scraped_data:
+            print("Writing scraped data to %s-%s-yellowpages-scraped-data.csv" % (slugify(keyword), slugify(place)))
+            with open('%s-%s-yellowpages-scraped-data.csv' % (slugify(keyword), slugify(place)), 'w') as csvfile:
+                fieldnames = [
+                    'rank',
+                    'business_name',
+                    'telephone',
+                    'business_page',
+                    'category',
+                    'website',
+                    'street_address',
+                    'locality',
+                    'region',
+                    'zipcode',
+                    'listing_url',
+                ]
+                writer = csv.DictWriter(csvfile, fieldnames=fieldnames, quoting=csv.QUOTE_ALL)
+                writer.writeheader()
+                for data in scraped_data:
+                    writer.writerow(data)
+            print("Success! Finish writing!")
+        else:
+            print("No data scraped!")
     else:
-        print("No data scraped!")
+        print("Enter both keyword and place!")
