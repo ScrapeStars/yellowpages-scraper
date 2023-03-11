@@ -43,7 +43,7 @@ We would execute the code with the script name followed by the positional argume
 to find the business details for restaurants in Boston. MA.
 
 ```
-python3 yellow_pages.py restaurants Boston,MA
+python3 scrape_yellow_pages.py restaurants Boston,MA
 ```
 ## Sample Output
 
