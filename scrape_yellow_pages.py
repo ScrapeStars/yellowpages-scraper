@@ -142,4 +142,4 @@ if __name__ == '__main__':
         else:
             print("No data scraped!")
     else:
-        print("Enter both keyword and place!")
+        print("Enter keyword and place!")
