@@ -55,4 +55,4 @@ python3 scrape_yellow_pages.py restaurants Boston,MA
 
 This will create a csv file:
 
-[Sample Output](https://raw.githubusercontent.com/ScrapeStars/yellowpages-scraper/main/restaurants-boston-2c-ma-yellowpages-scraped-data.csv)
+[Sample Output](https://raw.githubusercontent.com/ScrapeStars/yellowpages-scraper/main/restaurants-boston-ma-yellowpages-scraped-data.csv)
