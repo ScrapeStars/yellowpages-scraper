@@ -4,6 +4,7 @@ import time
 import random
 import csv
 from slugify import slugify
+import argparse
 
 
 class ScrapeYellowPages(object):
@@ -99,8 +100,21 @@ class ScrapeYellowPages(object):
 
 
 if __name__ == '__main__':
-    keyword = 'restaurants'
-    place = 'Boston%2C+MA'
+
+    # Passing commands the args
+    argparser = argparse.ArgumentParser()
+    argparser.add_argument('keyword', help='Search Keyword')
+    argparser.add_argument('place', help='Place Name')
+
+    args = argparser.parse_args()
+    keyword_arg = args.keyword
+    place_arg = args.place
+    # END passing args
+
+    keyword = keyword_arg
+    place = place_arg
+    # Example: python3 scrape_yellow_pages.py restaurants Boston,MA
+
     scrape_yellow_pages = ScrapeYellowPages(keyword=keyword, place=place)
     scraped_data = scrape_yellow_pages.parse_listings()
     if scraped_data:
